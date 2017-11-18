@@ -4,16 +4,14 @@ const Asserts = require('./helpers/asserts');
 const TicTacToe = artifacts.require('./TicTacToe.sol');
 
 const toHex = (str) => {
-  var hex = '0x';
-  for(var i=0;i<str.length;i++) {
-    hex += ''+str.charCodeAt(i).toString(16);
+  let hex = '0x';
+  for (ley i = 0; i < str.length; i++) {
+    hex += str.charCodeAt(i).toString(16);
   }
   return hex;
 };
 
-function sleep(s) {
-  return new Promise(resolve => setTimeout(resolve, s * 1000));
-}
+const sleep = (s) => new Promise(resolve => setTimeout(resolve, s * 1000));
 
 contract('TicTacToe', function(accounts) {
   const reverter = new Reverter(web3);
@@ -94,7 +92,11 @@ contract('TicTacToe', function(accounts) {
     }, {from: player2});
   });
 
-  it('should file with conditions works fine', async () => {});
+  it('should file with steps works fine', async () => {});
+
+  it('when has draw we return money back', async () => {});
+
+  it('when user step timeout we make winner who moved last and give him reward', async () => {});
 
   it('should withdraw winner amount after game complete', async () => {});
 

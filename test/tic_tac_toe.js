@@ -1,11 +1,12 @@
 const Web3 = require('web3');
+const fs = require('fs');
 const Reverter = require('./helpers/reverter');
 const Asserts = require('./helpers/asserts');
 const TicTacToe = artifacts.require('./TicTacToe.sol');
 
 const toHex = (str) => {
   let hex = '0x';
-  for (ley i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     hex += str.charCodeAt(i).toString(16);
   }
   return hex;
@@ -17,6 +18,7 @@ contract('TicTacToe', function(accounts) {
   const reverter = new Reverter(web3);
   const asserts = Asserts(assert);
   const OWNER = accounts[0];
+  const stepsArr = fs.readFileSync(`${__dirname}/fixtures/tic_tac_toe_steps.json`, 'utf8');
   let ticTacToe;
 
   before('setup', async () => {
